@@ -29,8 +29,7 @@ public class CompilationServiceImpl implements CompilationService {
     private final CompilationMapper compilationMapper;
 
     @Override
-    public
-    <CompilationDto> getCompilations(Boolean pinned, int from, int size) {
+    public List<CompilationDto> getCompilations(Boolean pinned, int from, int size) {
         log.info("Получение компиляции pinned: {}, from: {}, size: {}", pinned, from, size);
         List<Long> compilationIds = compilationRepository.getCompilationIds(pinned, from, size);
         if (compilationIds.isEmpty()) {
