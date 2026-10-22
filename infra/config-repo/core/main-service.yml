@@ -1,0 +1,21 @@
+server:
+  port: 0
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/ewm-db
+    username: localAdmin
+    password: localadmin
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+logging:
+  logging:
+    file:
+      name: logs/main-service.log
+  level:
+    org.hibernate.SQL: DEBUG
+    liquibase: DEBUG
+    org.springframework.boot.autoconfigure.liquibase: DEBUG

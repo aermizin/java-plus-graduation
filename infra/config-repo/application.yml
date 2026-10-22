@@ -1,0 +1,29 @@
+spring:
+  main:
+    banner-mode: off
+    log-startup-info: false
+  kafka:
+    bootstrap-servers: localhost:9092
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    drop-first: false
+
+logging:
+  level:
+    ru.yandex.practicum.core: WARN
+    ru.yandex.practicum.stats: WARN
+    org:
+      springframework: WARN
+      apache.kafka: WARN
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    hostname: localhost
