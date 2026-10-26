@@ -1,6 +1,5 @@
 package ru.practicum;
 
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
@@ -9,9 +8,8 @@ import org.springframework.web.client.RestClient;
 public class StatsClientConfig {
 
     @Bean
-    @LoadBalanced
-    public RestClient restClient() {
-        return RestClient.builder()
+    public RestClient restClient(RestClient.Builder builder) {
+        return builder
                 .baseUrl("http://stats-server")
                 .build();
     }
