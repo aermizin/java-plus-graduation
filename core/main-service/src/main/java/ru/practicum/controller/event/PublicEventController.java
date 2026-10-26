@@ -37,7 +37,7 @@ public class PublicEventController {
     @GetMapping
     public ResponseEntity<List<EventShortDto>> getEventsByFilter(@ModelAttribute @Valid PublicEventsFilter filter,
                                                                  HttpServletRequest request) {
-        log.info("/GET /events");
+
         EndpointHitInfo endpointHitInfo = createEndpointHitInfo(request);
 
         return ResponseEntity.status(HttpStatus.OK).body(eventService.getPublishedEvents(filter, endpointHitInfo));
@@ -46,7 +46,7 @@ public class PublicEventController {
     @GetMapping("/{eventId}")
     public ResponseEntity<EventFullDto> getEventById(@Positive @PathVariable("eventId") Long eventId,
                                                      HttpServletRequest request) {
-        log.info("GET /events/{}", eventId);
+
         EndpointHit endpointHit = createEndpointHit(request);
 
         try {
@@ -54,7 +54,6 @@ public class PublicEventController {
         } catch (RestClientException e) {
             log.error("Не удалось сохранить информацию о статистике endpointHit= {}", endpointHit);
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(eventService.getEventById(eventId));
     }
 
@@ -62,10 +61,11 @@ public class PublicEventController {
     public ResponseEntity<EventFullDto> getEventWithDistance(@Positive @PathVariable("eventId") Long eventId,
                                                              @RequestParam @NotNull @Min(-90) @Max(90) Double lat,
                                                              @RequestParam @NotNull @Min(-180) @Max(180) Double lon) {
+
         return ResponseEntity.status(HttpStatus.OK).body(eventService.getEventWithDistance(eventId, lat, lon));
     }
 
-    private EndpointHit createEndpointHit(HttpServletRequest request) {
+      private EndpointHit createEndpointHit(HttpServletRequest request) {
         String ip = request.getRemoteAddr();
         String uri = request.getRequestURI();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);

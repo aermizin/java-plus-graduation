@@ -22,16 +22,8 @@ import java.util.List;
 public class StatsServiceImpl implements StatsService {
     private final StatsRepository statsRepository;
 
-    @Value("${date.format}")
-    private String dateFormat;
-
-    private DateTimeFormatter formatter;
-
-    @PostConstruct
-    public void init() {
-        formatter = DateTimeFormatter.ofPattern(dateFormat);
-        StatsMapper.setFormatter(formatter);
-    }
+    private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     @Override
     public EndpointHit saveEndpointHit(EndpointHit endpointHit) {
@@ -46,8 +38,8 @@ public class StatsServiceImpl implements StatsService {
     @Override
     public List<ViewStats> getViewStats(String start, String end, List<String> uris, Boolean unique) {
         log.info("Получение списка ViewStats от: {} до: {}", start, end);
-        LocalDateTime startDateTime = LocalDateTime.parse(start, formatter);
-        LocalDateTime endDateTime = LocalDateTime.parse(end, formatter);
+        LocalDateTime startDateTime = LocalDateTime.parse(start, FORMATTER);
+        LocalDateTime endDateTime = LocalDateTime.parse(end, FORMATTER);
         validateDates(startDateTime, endDateTime);
         String[] urisArray = uris.toArray(String[]::new);
 

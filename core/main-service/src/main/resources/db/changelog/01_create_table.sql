@@ -1,3 +1,6 @@
+--liquibase formatted sql
+--changeset a.ermizin:1
+
 CREATE TABLE IF NOT EXISTS categories (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL UNIQUE

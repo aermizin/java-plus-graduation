@@ -11,6 +11,7 @@
 	</parent>
 
 	<name>Explore With Me</name>
+
     <modules>
         <module>core</module>
         <module>stats</module>
@@ -26,6 +27,7 @@
 		<java.version>21</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <liquibase.version>4.25.1</liquibase.version>
         <querydsl.version>5.1.0</querydsl.version>
         <spring-cloud.version>2023.0.1</spring-cloud.version>
 	</properties>
@@ -33,9 +35,23 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
             </dependency>
 
             <dependency>

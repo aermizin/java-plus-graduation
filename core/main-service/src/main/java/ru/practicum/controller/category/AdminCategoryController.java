@@ -22,8 +22,6 @@ public class AdminCategoryController {
     public ResponseEntity<CategoryDto> createCategory(
             @Valid @RequestBody NewCategoryDto newCategoryDto) {
 
-        log.info("POST /admin/categories : {}", newCategoryDto.name());
-
         CategoryDto createdCategory = categoryService.createCategory(newCategoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCategory);
     }

@@ -10,7 +10,6 @@
     </parent>
 
     <artifactId>infra</artifactId>
-
     <packaging>pom</packaging>
 
     <modules>

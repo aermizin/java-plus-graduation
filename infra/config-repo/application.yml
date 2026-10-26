@@ -2,8 +2,6 @@ spring:
   main:
     banner-mode: off
     log-startup-info: false
-  kafka:
-    bootstrap-servers: localhost:9092
   jpa:
     hibernate:
       ddl-auto: none

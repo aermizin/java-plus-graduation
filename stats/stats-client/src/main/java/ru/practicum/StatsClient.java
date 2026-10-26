@@ -49,7 +49,8 @@ public class StatsClient {
                         .queryParam("unique", unique)
                         .build())
                 .retrieve()
-                .toEntity(new ParameterizedTypeReference<List<ViewStats>>() {});
+                .toEntity(new ParameterizedTypeReference<List<ViewStats>>() {
+                });
 
         if (response.getStatusCode().value() != 200) {
             throw new RestClientException("Ожидался код запроса 200, но получили " + response.getStatusCode());
