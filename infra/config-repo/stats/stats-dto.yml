@@ -1,5 +1,0 @@
-server:
-  port: 0
-
-date:
-  format: "yyyy-MM-dd HH:mm:ss"
