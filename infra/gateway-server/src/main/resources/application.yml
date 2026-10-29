@@ -2,21 +2,4 @@ spring:
   application:
     name: api-gateway
   config:
-    import: optional:configserver:http://localhost:8888
-  cloud:
-    gateway:
-      routes:
-        - id: main-service
-          uri: lb://main-service
-          predicates:
-            - Path=/categories/**,/compilations/**,/users/**,/events/**,/admin/**
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway,health
-  endpoint:
-    gateway:
-      enabled: true
-      access: read-only
+    import: configserver:http://localhost:8888

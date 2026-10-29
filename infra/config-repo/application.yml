@@ -13,9 +13,8 @@ logging:
   level:
     ru.yandex.practicum.core: WARN
     ru.yandex.practicum.stats: WARN
-    org:
-      springframework: WARN
-      apache.kafka: WARN
+    org.springframework: WARN
+    org.hibernate.SQL: WARN
 
 eureka:
   client:
@@ -23,5 +22,3 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true
-    ip-address: 127.0.0.1
-    hostname: localhost
