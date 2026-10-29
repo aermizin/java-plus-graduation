@@ -3,12 +3,3 @@ spring:
     name: api-gateway
   config:
     import: configserver:http://localhost:8888
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway,health
-  endpoint:
-    gateway:
-      access: read-only

@@ -35,3 +35,12 @@ spring:
           uri: lb://main-service
           predicates:
             - Path=/categories/**,/compilations/**,/users/**,/events/**,/admin/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health
+  endpoint:
+    gateway:
+      access: read-only
