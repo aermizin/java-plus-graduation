@@ -30,7 +30,6 @@ spring:
             allow-credentials: true
             max-age: 3600
 
-
       routes:
         - id: main-service-categories
           uri: lb://main-service
