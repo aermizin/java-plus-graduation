@@ -2,8 +2,6 @@ server:
   port: 8080
 
 spring:
-  main:
-    web-application-type: reactive
   cloud:
     gateway:
       discovery:
@@ -37,19 +35,3 @@ spring:
           uri: lb://main-service
           predicates:
             - Path=/categories,/categories/**,/compilations,/compilations/**,/users,/users/**,/events,/events/**,/admin/**
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway,health
-  endpoint:
-    gateway:
-      enabled: true
-      access: read-only
-
-logging:
-  level:
-    org.springframework.cloud.loadbalancer: TRACE
-    org.springframework.cloud.gateway: TRACE
-    reactor.netty.http.client: DEBUG

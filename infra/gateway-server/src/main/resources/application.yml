@@ -1,7 +1,15 @@
 spring:
   application:
     name: api-gateway
-  main:
-    web-application-type: reactive
   config:
     import: configserver:http://localhost:8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway,health
+  endpoint:
+    gateway:
+      enabled: true
+      access: read-only
