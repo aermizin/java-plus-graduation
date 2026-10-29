@@ -29,7 +29,7 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <liquibase.version>4.25.1</liquibase.version>
         <querydsl.version>5.1.0</querydsl.version>
-        <spring-cloud.version>2023.0.1</spring-cloud.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 
     <dependencyManagement>
