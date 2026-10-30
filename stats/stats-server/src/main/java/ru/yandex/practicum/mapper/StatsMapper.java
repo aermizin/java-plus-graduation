@@ -7,11 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public final class StatsMapper {
-    private static DateTimeFormatter FORMATTER;
-
-    public static void setFormatter(DateTimeFormatter formatter) {
-        FORMATTER = formatter;
-    }
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public static EndpointHitEntity toEntity(EndpointHit endpointHit) {
         EndpointHitEntity result = new EndpointHitEntity();
