@@ -1,0 +1,20 @@
+server:
+  port: 0
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/stats-db
+    username: dbuser
+    password: 12345
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yml
+
+logging:
+  file:
+    name: logs/stats-server.log
+  level:
+    org.hibernate.SQL: WARN
+    liquibase: WARN
+    org.springframework.boot.autoconfigure.liquibase: WARN

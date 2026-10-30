@@ -12,6 +12,12 @@
 
 	<name>Explore With Me</name>
 
+    <modules>
+        <module>core</module>
+        <module>stats</module>
+        <module>infra</module>
+    </modules>
+
 	<groupId>ru.practicum</groupId>
 	<artifactId>explore-with-me</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -21,24 +27,33 @@
 		<java.version>21</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <liquibase.version>4.25.1</liquibase.version>
         <querydsl.version>5.1.0</querydsl.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
-
-    <modules>
-        <module>main-service</module>
-        <module>stats-service</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
-            <!-- MapStruct -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct</artifactId>
                 <version>${mapstruct.version}</version>
             </dependency>
 
-            <!-- QueryDSL JPA (для Spring Boot 3 с Jakarta) -->
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-jpa</artifactId>
@@ -46,7 +61,6 @@
                 <classifier>jakarta</classifier>
             </dependency>
 
-            <!-- QueryDSL APT (процессор аннотаций) -->
             <dependency>
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-apt</artifactId>
@@ -59,7 +73,6 @@
 	<build>
 		<pluginManagement>
 			<plugins>
-                <!-- Плагин компилятора (важно для MapStruct) -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -68,13 +81,12 @@
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version> <!-- или версия из spring-boot-starter-parent -->
+                                <version>${lombok.version}</version>
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
                 </plugin>
 
-                <!-- Плагин для генерации Q-классов QueryDSL -->
                 <plugin>
                     <groupId>com.mysema.maven</groupId>
                     <artifactId>apt-maven-plugin</artifactId>
