@@ -29,8 +29,8 @@ public interface StatsRepository extends JpaRepository<EndpointHitEntity, Long> 
             "FROM endpoint_hits e " +
             "WHERE e.timestamp BETWEEN :start AND :end " +
             "AND EXISTS (" +
-            "   SELECT 1 FROM UNNEST(CAST(:uris AS text[])) u " +
-            "   WHERE e.uri LIKE CONCAT('%', u, '%')" +
+            "   SELECT 1 FROM UNNEST(CAST(:uris AS text[])) AS uri_filter(uri) " +
+            "   WHERE e.uri LIKE CONCAT('%', uri_filter.uri, '%')" +
             ") " +
             "GROUP BY e.app, e.uri " +
             "ORDER BY COUNT(*) DESC", nativeQuery = true)
@@ -42,8 +42,8 @@ public interface StatsRepository extends JpaRepository<EndpointHitEntity, Long> 
             "FROM endpoint_hits e " +
             "WHERE e.timestamp BETWEEN :start AND :end " +
             "AND EXISTS (" +
-            "   SELECT 1 FROM UNNEST(CAST(:uris AS text[])) u " +
-            "   WHERE e.uri LIKE CONCAT('%', u, '%')" +
+            "   SELECT 1 FROM UNNEST(CAST(:uris AS text[])) AS uri_filter(uri) " +
+            "   WHERE e.uri LIKE CONCAT('%', uri_filter.uri, '%')" +
             ") " +
             "GROUP BY e.app, e.uri " +
             "ORDER BY COUNT(DISTINCT e.ip) DESC ", nativeQuery = true)
